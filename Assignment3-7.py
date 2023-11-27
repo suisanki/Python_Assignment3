@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import random
 
-class randomWalker():
+class RandomWalker():
     
     def __init__(self,x,y):
         self.start_x = x
@@ -19,14 +19,34 @@ class randomWalker():
 
         plt.figure(figsize=(8,6), dpi = 200)
         plt.scatter(self.XP, self.YP, color='black', s=0.1, marker='o')
-        
-try:
-    wallStreet = randomWalker(0,0)
-    wallStreet.RandomWalkPlot(0)
 
-except ValueError as msg:
-    print(msg)
+if __name__ == "__main__":
 
+    while True:
+        try:
+            x = input("Enter starting x coordination: ")
+            y = input("Enter starting y coordination: ")
+            try:
+                x,y = float(x),float(y)
+                
+            except ValueError:
+                print("Enter integer or float.")
+                continue
+            
+            steps = input("Enter number of steps (positive integer): ")
+            
+            if steps.isnumeric():
+                steps = int(steps)
+            else:
+                raise ValueError("Step should be positive integer")
+            
+            wallStreet = RandomWalker(x,y)
+            wallStreet.RandomWalkPlot(steps)
+            print("Plotted.")
+            break
+
+        except ValueError as msg:
+            print(msg)
     
     
     
